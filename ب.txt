@@ -1,0 +1,25 @@
+create table Tb_Station (StationID int identity (1,1),Name varchar(100),Latitude float,Longitude float, City varchar(100))
+
+create table Tb_Earthquake (EarthquakeID int identity (1,1), ID int,Power float,LogTime datetime)
+
+insert into Tb_Station values ('Test1',14.75,78.4189,'Tehran')
+insert into Tb_Station values ('Test2',64.75,42.4548,'abadan')  
+insert into Tb_Station values ('Test3',78.75,89.439,'ardebil') 
+
+insert into Tb_Earthquake values (1,4.5,'2022-05-21 10:58:13')
+insert into Tb_Earthquake values (3,6.5,'2022-04-12 23:12:13')
+insert into Tb_Earthquake values (2,3.1,'2022-01-09 04:23:11')
+insert into Tb_Earthquake values (3,5.2,'2021-06-21 06:10:13')
+insert into Tb_Earthquake values (2,3.5,'2021-02-27 00:58:25')
+insert into Tb_Earthquake values (3,2.8,'2020-03-12 20:43:09')
+
+
+select Tb_Station.StationID,Name,City,Latitude,Longitude,Power,LogTime from Tb_Station inner join Tb_Earthquake on Tb_Station.StationID = Tb_Earthquake.stationID
+
+select * from Tb_Station left join Tb_Earthquake on Tb_Station.StationID = Tb_Earthquake.StationID
+
+select * from Tb_Station right join Tb_Earthquake on Tb_Station.StationID = Tb_Earthquake.StationID
+
+select Tb_Station.StationID,Name,City,Latitude,Longitude,Power,LogTime from Tb_Station FULL OUTER JOIN Tb_Earthquake on Tb_Station.StationID = Tb_Earthquake.StationID where Power > '3'
+
+select Tb_Station.StationID,Name,City,Latitude,Longitude,Power,LogTime from Tb_Station FULL OUTER JOIN Tb_Earthquake on Tb_Station.StationID = Tb_Earthquake.StationID order by Power desc
